@@ -1,6 +1,6 @@
 public class ListaEncadeada{
     private  Node Lista;
-
+    public String result = "";
     public  ListaEncadeada(){
         Lista = null;
     }
@@ -62,15 +62,18 @@ public class ListaEncadeada{
     }
 
     public void imprimir(){
+
         if(Lista == null){
-            System.out.println("Lista Vazia");
+            System.out.println("Lista Vazia \n");
         }
         else{
             Node aux = Lista;
             while(aux != null){
-                System.out.println("info " + aux.getInfo());
+                Integer newInfo = aux.getInfo();
                 aux = aux.getProximo();
+                result = result + " " + newInfo;//mudança na formatação
             }
+            System.out.println("Infos " + result + "\n");
         }
     }
     public Node removePrimeiro() {
@@ -82,12 +85,14 @@ public class ListaEncadeada{
     public Node removeUltimo() {
         Node aux = Lista;
         Node ref = aux;
-        while (aux.getProximo() != null) {
-            ref = aux;
-            aux = aux.getProximo();
-        }
-        ref.setProximo(null);
+        if(!vazia()){
+            while (aux.getProximo() != null) {
+                ref = aux;
+                aux = aux.getProximo();
+            }
+            ref.setProximo(null);}
         return aux;
+
     }
 
     public Node remove(Node node) {
